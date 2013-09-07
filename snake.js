@@ -18,6 +18,7 @@ var tempInterval =5;
 var count = 0;
 var foodCount =0;
 var foodCountCheck=1;
+var score = 0;
 
 //snake vars
 var snake;
@@ -47,6 +48,7 @@ function init(){
 
 //resets changed variables and creates new snake head to play another game
 function reset(){
+	score =0;
 	dx =0;
 	dy =0;
 	Interval = 5;
@@ -90,10 +92,10 @@ function draw(){
 	if(!isOver){
 		count++;
 		if(count%Interval == 0){
-			context.clearRect(180, 180, 20, 20);
+			context.clearRect(WIDTH-25, 0, 25, 25);
 			context.font = "14px Arial";
 			context.fillStyle = 'white';
-			context.fillText(Interval,180,200);
+			context.fillText(score, WIDTH-25, 20);
 
 			for( x=0; x<snake.length; x++){
 				drawSegs(snake[x]);
@@ -106,6 +108,7 @@ function draw(){
 		
 				drawFood();
 				foodCount++;
+				score++;
 				if(Interval >2 && foodCount == foodCountCheck){
 					Interval--;
 					foodCount =0; //reset foodCount
