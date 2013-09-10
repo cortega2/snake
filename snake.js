@@ -25,11 +25,7 @@ var snake;
 var head;
 var SIZE = 20;
 
-//variables for moving not used right now but might need them later
-up = false;
-down = false;
-left = false;
-right = false;
+var boostOk= true;
 
 var isOver=false;
 
@@ -189,11 +185,14 @@ function drawSegs(seg){
 
 // true means key down, false means key up and boost off
 function boost(x){
-	if(x){
+	if(x && boostOk){
 		Interval --;
+		boostOk = false;
 	}
-	else
-	   Interval ++;	   
+	else if(!x && !boostOk){
+	   Interval ++;
+	   boostOk = true;
+	}	   
 }
 
 document.onkeyup = function keyUp(evt){
